@@ -15,7 +15,7 @@ pipeline {
           },
           "Preparacao (mvn pipeline)": {
             withMaven(maven: 'maven') {
-              sh 'sh "mvn -version"'
+              sh 'mvn -version'
             }
             
             
