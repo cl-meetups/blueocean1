@@ -31,5 +31,11 @@ pipeline {
         
       }
     }
+    stage('Limpar') {
+      steps {
+        isUnix()
+        echo 'Cool you\'re on Unix!'
+      }
+    }
   }
 }
