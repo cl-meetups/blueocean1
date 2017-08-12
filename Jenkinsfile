@@ -23,5 +23,13 @@ pipeline {
         )
       }
     }
+    stage('Compilar') {
+      steps {
+        withMaven(maven: 'maven') {
+          sh 'mvn clean install'
+        }
+        
+      }
+    }
   }
 }
