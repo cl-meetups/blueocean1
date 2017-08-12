@@ -3,12 +3,24 @@ pipeline {
   stages {
     stage('Preparacao') {
       steps {
-        script {
-          withEnv(["PATH+MAVEN=${tool 'maven'}/bin"]) {
-            sh "mvn -version"
+        parallel(
+          "Preparacao": {
+            script {
+              withEnv(["PATH+MAVEN=${tool 'maven'}/bin"]) {
+                sh "mvn -version"
+              }
+            }
+            
+            
+          },
+          "Preparacao (mvn pipeline)": {
+            withMaven(maven: 'maven') {
+              sh 'sh "mvn -version"'
+            }
+            
+            
           }
-        }
-        
+        )
       }
     }
   }
