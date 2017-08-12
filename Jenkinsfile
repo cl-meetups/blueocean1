@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('Preparação') {
+    stage('Preparacao') {
       steps {
-        sh 'mvn -version'
+        script {
+          withEnv(["JAVA_HOME=${ tool 'jdk8-u144' }", "PATH+MAVEN=${tool 'maven'}/bin:${env.JAVA_HOME}/bin"]) {
+            sh "mvn -version"
+          }
+        }
+        
       }
     }
   }
